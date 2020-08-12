@@ -1,0 +1,16 @@
+﻿.text-color-white {
+    color: white !important;
+    
+}
+
+.background-color-black {
+    background-color: black;
+}
+
+.text_color-f2f2f2 {
+    color: #f2f2f2;
+}
+.text-delete-decor {
+    color: red;
+    text-decoration: underline
+}

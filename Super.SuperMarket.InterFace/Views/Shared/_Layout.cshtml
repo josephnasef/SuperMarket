@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/DatePicker")
+    @Styles.Render("~/Content/bootstrap2_toggel")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Super Market", "List", "Product", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    <li>@Html.Action("Summary", "Cart")</li>
+                    <li>
+                    <li>
+                        @Html.ActionLink("Admin", "index","Product",null, new { @class = "magin-left-10" })
+                    </li>
+                </ul>
+                <div class="visible-xs">
+                    @Html.Action("Menu", "Categories", new { horizontalLayout = true })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content margin-top-40" >
+
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        <br />
+        <div class="row">
+
+            <div class="col-sm-2 hidden-xs height-1000">
+                @Html.Action("Menu", "Categories")
+            </div>
+
+            <div class="col-xs-12 col-sm-7">
+                @RenderBody()
+            </div>
+            <div class="col-sm-2 hidden-xs RightSide" >
+                @Html.Action("Menu", "PaymentMethods")
+
+            </div>
+        </div>
+
+        <hr class="margin-top-200" />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryValidate")
+    @Scripts.Render("~/Scripts/DatePicker")
+    @Scripts.Render("~/bundles/bootstrap2_toggel")
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+<h3 class="text-info" style="background-color:antiquewhite; padding-left:5px; margin-top: 1px;">
+    Pay Methods :
+</h3>
+<ul class="list-unstyled components">
+   
+   
+    @foreach (var item in Model)
+    {
+    <li style="margin-bottom: 13px;">
+        @Html.ActionLink(item, item, "Cart", null, new { @class = "btn btn-block btn-info btn-lg" })
+    </li>
+    }
+</ul>
+

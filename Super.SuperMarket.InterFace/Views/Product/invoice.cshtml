@@ -1,0 +1,310 @@
+﻿@model Super.SuperMarket.InterFace.Models.CartIndexViewModel
+
+@{
+
+    Layout = null;
+}
+<meta charset="utf-8">
+<title>Invoice</title>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+<link href="~/Content/invoicee.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+@{
+    //var time = DateTime.Now.Date.ToShortDateString();
+    string[] time = new string[4];
+    time[0] = DateTime.Now.Date.DayOfWeek.ToString();
+    time[1] = DateTime.Now.ToString("MMM");
+    time[2] = DateTime.Now.Day.ToString();
+    time[3] = DateTime.Now.Year.ToString();
+}
+<button @*id="printInvoice"*@ onclick="myfunction()" class="Mybtn">
+    <i class="fa fa-print"></i> Print
+</button>
+
+<br>
+<div id="div3">
+    <header>
+        <h1>Invoice</h1>
+        @*<address contenteditable>
+                <p>Jonathan Neal</p>
+                <p>101 E. Chapman Ave<br>Orange, CA 92866</p>
+                <p>(800) 555-1234</p>
+            </address>
+            <span><img alt="" src="http://www.jonathantneal.com/examples/invoice/logo.png"><input type="file" accept="image/*"></span>*@
+    </header>
+    <article>
+        <h1>Recipient</h1>
+        <address contenteditable>
+            <p>Some Company<br>c/o Some Guy</p>
+        </address>
+        <table class="meta">
+            <tr>
+                <th><span contenteditable>Invoice #</span></th>
+                <td><span contenteditable>101138</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Date</span></th>
+
+                <td><label>@time[0] @time[2] - @time[1] - @time[3] </label></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Amount Due</span></th>
+                <td><span id="prefix" contenteditable>$</span><span>600.00</span></td>
+            </tr>
+        </table>
+        <table class="inventory">
+            <thead>
+                <tr>
+                    <th><span contenteditable><label>Quantity </label></span></th>
+                    <th><span contenteditable><label>Item</label></span></th>
+                    <th><span contenteditable><label>Price</label></span></th>
+                    <th><span contenteditable><label>Subtotal</label></span></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var line in Model.Cart.lines)
+                {
+                    <tr>
+                        <td><span contenteditable><label>@line.Quantity</label></span></td>
+                        <td><span contenteditable><label>@line.Product.Name</label></span></td>
+                        <td><span data-prefix></span><span contenteditable><label>@line.Product.SellingPrice.ToString("c")</label></span></td>
+                        <td><span contenteditable><label> @((line.Quantity * line.Product.SellingPrice).ToString("c"))</label></span></td>
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+        <table class="balance">
+            <tr>
+                <th><span contenteditable>Total</span></th>
+                <td>
+                    <span data-prefix></span><span>
+                        @foreach (var line in Model.Cart.lines)
+                        {@((line.Quantity * line.Product.SellingPrice).ToString("c"))}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Amount Paid</span></th>
+                <td><span data-prefix>$</span><span contenteditable>0.00</span></td>
+            </tr>
+            <tr>
+                <th><span contenteditable>Balance Due</span></th>
+                <td><span data-prefix>$</span><span>600.00</span></td>
+            </tr>
+        </table>
+    </article>
+    <aside>
+        <h1><span contenteditable>Additional Notes</span></h1>
+        <div contenteditable>
+            <p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+        </div>
+    </aside>
+</div>
+
+<p><input id="btnSubmit" type="submit" value="Print" onclick="divPrint();" /></p>
+<script type="text/javascript">
+  
+</script>
+@Scripts.Render("~/bundles/jquery")
+@*@RenderSection("scripts", required: false)*@
+@Scripts.Render("~/bundles/jqueryValidate")
+<script>
+    $("#printInvoice").click(function () {
+        Popup($(".invoice")[0].outerHTML);
+        function Popup(data) {
+            window.print();
+            return true;
+        }
+    });
+    function divPrint() {
+        // Some logic determines which div should be printed...
+        // This example uses div3.
+        $("#div3").addClass("printable");
+        window.print();
+    }
+    function generatePDF() {
+        var opt = {
+            //margin: [top, left, bottom, right],
+            margin: [4, 3, 4, 3],
+            filename: 'myfile.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1, windowWidth: 100 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+
+        };  // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("invoice");
+        // Choose the element and save the PDF for our user.
+        html2pdf().set(opt)
+            .from(element)
+            .save();
+    }
+
+    function myfunction() {
+        printDivCSS = new String('<link href="myprintstyle.css" rel="stylesheet" type="text/css">')
+        function printDiv(divId) {
+            window.frames["print_frame"].document.body.innerHTML = printDivCSS + document.getElementById(divId).innerHTML;
+            window.frames["print_frame"].window.focus();
+            window.frames["print_frame"].window.print();
+        }
+    }
+
+
+    /* Shivving (IE8 is not supported, but at least it won't look as awful)
+/* ========================================================================== */
+
+    (function (document) {
+        var
+            head = document.head = document.getElementsByTagName('head')[0] || document.documentElement,
+            elements = 'article aside audio bdi canvas data datalist details figcaption figure footer header hgroup mark meter nav output picture progress section summary time video x'.split(' '),
+            elementsLength = elements.length,
+            elementsIndex = 0,
+            element;
+
+        while (elementsIndex < elementsLength) {
+            element = document.createElement(elements[++elementsIndex]);
+        }
+
+        element.innerHTML = 'x<style>' +
+            'article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}' +
+            'audio[controls],canvas,video{display:inline-block}' +
+            '[hidden],audio{display:none}' +
+            'mark{background:#FF0;color:#000}' +
+            '</style>';
+
+        return head.insertBefore(element.lastChild, head.firstChild);
+    })(document);
+
+    /* Prototyping
+    /* ========================================================================== */
+
+    (function (window, ElementPrototype, ArrayPrototype, polyfill) {
+        function NodeList() { [polyfill] }
+        NodeList.prototype.length = ArrayPrototype.length;
+
+        ElementPrototype.matchesSelector = ElementPrototype.matchesSelector ||
+            ElementPrototype.mozMatchesSelector ||
+            ElementPrototype.msMatchesSelector ||
+            ElementPrototype.oMatchesSelector ||
+            ElementPrototype.webkitMatchesSelector ||
+            function matchesSelector(selector) {
+                return ArrayPrototype.indexOf.call(this.parentNode.querySelectorAll(selector), this) > -1;
+            };
+
+        ElementPrototype.ancestorQuerySelectorAll = ElementPrototype.ancestorQuerySelectorAll ||
+            ElementPrototype.mozAncestorQuerySelectorAll ||
+            ElementPrototype.msAncestorQuerySelectorAll ||
+            ElementPrototype.oAncestorQuerySelectorAll ||
+            ElementPrototype.webkitAncestorQuerySelectorAll ||
+            function ancestorQuerySelectorAll(selector) {
+                for (var cite = this, newNodeList = new NodeList; cite = cite.parentElement;) {
+                    if (cite.matchesSelector(selector)) ArrayPrototype.push.call(newNodeList, cite);
+                }
+
+                return newNodeList;
+            };
+
+        ElementPrototype.ancestorQuerySelector = ElementPrototype.ancestorQuerySelector ||
+            ElementPrototype.mozAncestorQuerySelector ||
+            ElementPrototype.msAncestorQuerySelector ||
+            ElementPrototype.oAncestorQuerySelector ||
+            ElementPrototype.webkitAncestorQuerySelector ||
+            function ancestorQuerySelector(selector) {
+                return this.ancestorQuerySelectorAll(selector)[0] || null;
+            };
+    })(this, Element.prototype, Array.prototype);
+
+    /* Helper Functions
+    /* ========================================================================== */
+
+
+
+    function parseFloatHTML(element) {
+        return parseFloat(element.innerHTML.replace(/[^\d\.\-]+/g, '')) || 0;
+    }
+
+    function parsePrice(number) {
+        return number.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,');
+    }
+
+    /* Update Number
+    /* ========================================================================== */
+
+    function updateNumber(e) {
+        var
+            activeElement = document.activeElement,
+            value = parseFloat(activeElement.innerHTML),
+            wasPrice = activeElement.innerHTML == parsePrice(parseFloatHTML(activeElement));
+
+        if (!isNaN(value) && (e.keyCode == 38 || e.keyCode == 40 || e.wheelDeltaY)) {
+            e.preventDefault();
+
+            value += e.keyCode == 38 ? 1 : e.keyCode == 40 ? -1 : Math.round(e.wheelDelta * 0.025);
+            value = Math.max(value, 0);
+
+            activeElement.innerHTML = wasPrice ? parsePrice(value) : value;
+        }
+
+        updateInvoice();
+    }
+
+    /* Update Invoice
+    /* ========================================================================== */
+
+    function updateInvoice() {
+        var total = 0;
+        var cells, price, total, a, i;
+
+        // update inventory cells
+        // ======================
+
+        for (var a = document.querySelectorAll('table.inventory tbody tr'), i = 0; a[i]; ++i) {
+            // get inventory row cells
+            cells = a[i].querySelectorAll('span:last-child');
+
+            // set price as cell[2] * cell[3]
+            price = parseFloatHTML(cells[2]) * parseFloatHTML(cells[3]);
+
+            // add price to total
+            total += price;
+
+            // set row total
+            cells[4].innerHTML = price;
+        }
+
+        // update balance cells
+        // ====================
+
+        // get balance cells
+        cells = document.querySelectorAll('table.balance td:last-child span:last-child');
+
+        // set totalmedia
+        cells[0].innerHTML = total;
+
+        // set balance and meta balance
+        cells[2].innerHTML = document.querySelector('table.meta tr:last-child td:last-child span:last-child').innerHTML = parsePrice(total - parseFloatHTML(cells[1]));
+
+        // update prefix formatting
+        // ========================
+
+        var prefix = document.querySelector('#prefix').innerHTML;
+        for (a = document.querySelectorAll('[data-prefix]'), i = 0; a[i]; ++i) a[i].innerHTML = prefix;
+
+        // update price formatting
+        // =======================
+
+        for (a = document.querySelectorAll('span[data-prefix] + span'), i = 0; a[i]; ++i) if (document.activeElement != a[i]) a[i].innerHTML = parsePrice(parseFloatHTML(a[i]));
+    }
+
+
+
+
+    window.addEventListener && document.addEventListener('DOMContentLoaded', onContentLoad);
+
+</script>
+<script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>

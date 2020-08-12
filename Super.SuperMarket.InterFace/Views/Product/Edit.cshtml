@@ -1,0 +1,191 @@
+﻿@model Super.SuperMarket.DAl.SQLServer.Model.Product
+
+@{
+    ViewBag.Title = "Edit Product";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+    <h2>Edit Product</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.BarcodeNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.BarcodeNumber, new { htmlAttributes = new { @class = "form-control", type = "text" } })
+                    @Html.ValidationMessageFor(model => model.BarcodeNumber, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PurchasePrice, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.PurchasePrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PurchasePrice, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SellingPrice, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.SellingPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SellingPrice, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MadeInCountry, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.MadeInCountry, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MadeInCountry, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ProductionDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+
+                    @Html.TextBoxFor(model => model.ProductionDate, new
+               {
+                   @class = "form-control",
+                   data_Provide = "datepicker",
+                   data_date_format = "m/dd/yyyy",
+                   data_data_autoclose = "true"
+               })
+
+                    @Html.ValidationMessageFor(model => model.ProductionDate, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+
+                    @Html.TextBoxFor(model => model.ExpiryDate,
+                   new
+                        {
+                       @class = "form-control",
+                       data_Provide = "datepicker",
+                       data_date_format = "m/dd/yyyy",
+                       data_data_autoclose = "true"
+                   })
+                    @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HasGuarantee, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.HasGuarantee,
+                       new
+                       {
+                          htmlAttributes = new
+                                {
+                                    data_toggle = "toggle",
+                                    data_on = true,
+                                    data_off = false,
+                                    data_onstyle = "success",
+                                    data_offstyle = "danger",
+                                    type = "checkbox"
+                                }
+                       })
+
+
+                        @Html.ValidationMessageFor(model => model.HasGuarantee, "", new { @class = "text-danger col-lg-offset-3" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "Category type", htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.DropDownList("CategoryId", null, "-- category-- ", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger col-lg-offset-3" })
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SupplierId, "Supplier name", htmlAttributes: new { @class = "control-label col-md-3" })
+                @Html.DropDownList("SupplierId", null, "-- supplier-- ", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Quentity, htmlAttributes: new { @class = "control-label col-md-3" })
+                <div>
+                    @Html.EditorFor(model => model.Quentity, new { htmlAttributes = new { @class = "form-control col-md-2", type = "text" } })
+                    @Html.ValidationMessageFor(model => model.Quentity, "", new { @class = "text-danger col-lg-offset-3" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @Html.HiddenFor(model => model.CreatedDate)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.UpdatedDate)
+    @Html.HiddenFor(model => model.UpdatedBy)
+
+    <br />
+    <div class="row">
+        <div class="col-md-offset-4 col-md-2">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+        <div class="col-md-2">
+            <div class="btn btn-danger text-color-white">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-color-white" })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+   
+}
+

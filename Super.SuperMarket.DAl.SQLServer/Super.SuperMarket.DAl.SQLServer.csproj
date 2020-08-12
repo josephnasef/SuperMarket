@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E9E8FD46-EB23-4C57-8DD3-73F0DB24D1FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Super.SuperMarket.DAl.SQLServer</RootNamespace>
+    <AssemblyName>Super.SuperMarket.DAl.SQLServer</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasesAndAbstracts\EntityBase.cs" />
+    <Compile Include="Context\Context.cs" />
+    <Compile Include="Migrations\202005070211413_sa.cs" />
+    <Compile Include="Migrations\202005070211413_sa.Designer.cs">
+      <DependentUpon>202005070211413_sa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070226403_sa1.cs" />
+    <Compile Include="Migrations\202005070226403_sa1.Designer.cs">
+      <DependentUpon>202005070226403_sa1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070228509_sa2.cs" />
+    <Compile Include="Migrations\202005070228509_sa2.Designer.cs">
+      <DependentUpon>202005070228509_sa2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070229255_sa3.cs" />
+    <Compile Include="Migrations\202005070229255_sa3.Designer.cs">
+      <DependentUpon>202005070229255_sa3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070230518_sa4.cs" />
+    <Compile Include="Migrations\202005070230518_sa4.Designer.cs">
+      <DependentUpon>202005070230518_sa4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070235148_sa5.cs" />
+    <Compile Include="Migrations\202005070235148_sa5.Designer.cs">
+      <DependentUpon>202005070235148_sa5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070238227_sa6.cs" />
+    <Compile Include="Migrations\202005070238227_sa6.Designer.cs">
+      <DependentUpon>202005070238227_sa6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070247335_sa7.cs" />
+    <Compile Include="Migrations\202005070247335_sa7.Designer.cs">
+      <DependentUpon>202005070247335_sa7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005071616276_product.cs" />
+    <Compile Include="Migrations\202005071616276_product.Designer.cs">
+      <DependentUpon>202005071616276_product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005100035559_m.cs" />
+    <Compile Include="Migrations\202005100035559_m.Designer.cs">
+      <DependentUpon>202005100035559_m.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005152038000_show.cs" />
+    <Compile Include="Migrations\202005152038000_show.Designer.cs">
+      <DependentUpon>202005152038000_show.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005152040545_show1.cs" />
+    <Compile Include="Migrations\202005152040545_show1.Designer.cs">
+      <DependentUpon>202005152040545_show1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005172050097_Description.cs" />
+    <Compile Include="Migrations\202005172050097_Description.Designer.cs">
+      <DependentUpon>202005172050097_Description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005181921575_shopping.cs" />
+    <Compile Include="Migrations\202005181921575_shopping.Designer.cs">
+      <DependentUpon>202005181921575_shopping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005182025034_x.cs" />
+    <Compile Include="Migrations\202005182025034_x.Designer.cs">
+      <DependentUpon>202005182025034_x.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005182038079_و.cs" />
+    <Compile Include="Migrations\202005182038079_و.Designer.cs">
+      <DependentUpon>202005182038079_و.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005182043317_و1.cs" />
+    <Compile Include="Migrations\202005182043317_و1.Designer.cs">
+      <DependentUpon>202005182043317_و1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006011958089_quantity.cs" />
+    <Compile Include="Migrations\202006011958089_quantity.Designer.cs">
+      <DependentUpon>202006011958089_quantity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021249053_bill.cs" />
+    <Compile Include="Migrations\202006021249053_bill.Designer.cs">
+      <DependentUpon>202006021249053_bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021430244_creation.cs" />
+    <Compile Include="Migrations\202006021430244_creation.Designer.cs">
+      <DependentUpon>202006021430244_creation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021448543_creation1.cs" />
+    <Compile Include="Migrations\202006021448543_creation1.Designer.cs">
+      <DependentUpon>202006021448543_creation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021514518_creation2.cs" />
+    <Compile Include="Migrations\202006021514518_creation2.Designer.cs">
+      <DependentUpon>202006021514518_creation2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021521334_creation3.cs" />
+    <Compile Include="Migrations\202006021521334_creation3.Designer.cs">
+      <DependentUpon>202006021521334_creation3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021525335_creation4.cs" />
+    <Compile Include="Migrations\202006021525335_creation4.Designer.cs">
+      <DependentUpon>202006021525335_creation4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021528327_creation5.cs" />
+    <Compile Include="Migrations\202006021528327_creation5.Designer.cs">
+      <DependentUpon>202006021528327_creation5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021538141_creation6.cs" />
+    <Compile Include="Migrations\202006021538141_creation6.Designer.cs">
+      <DependentUpon>202006021538141_creation6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021539433_creation7.cs" />
+    <Compile Include="Migrations\202006021539433_creation7.Designer.cs">
+      <DependentUpon>202006021539433_creation7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031444446_ss.cs" />
+    <Compile Include="Migrations\202006031444446_ss.Designer.cs">
+      <DependentUpon>202006031444446_ss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031450559_ss1.cs" />
+    <Compile Include="Migrations\202006031450559_ss1.Designer.cs">
+      <DependentUpon>202006031450559_ss1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031451193_ss2.cs" />
+    <Compile Include="Migrations\202006031451193_ss2.Designer.cs">
+      <DependentUpon>202006031451193_ss2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031454245_billproduct.cs" />
+    <Compile Include="Migrations\202006031454245_billproduct.Designer.cs">
+      <DependentUpon>202006031454245_billproduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\AppUser.cs" />
+    <Compile Include="Model\BankAccount.cs" />
+    <Compile Include="Model\Bill.cs" />
+    <Compile Include="Model\CartLine.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\Operation.cs" />
+    <Compile Include="Model\OperationType.cs" />
+    <Compile Include="Model\PaymentMethod.cs" />
+    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\ShippingDetails.cs" />
+    <Compile Include="Model\Supplier.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.Mvc">
+      <Version>5.2.7</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005070211413_sa.resx">
+      <DependentUpon>202005070211413_sa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070226403_sa1.resx">
+      <DependentUpon>202005070226403_sa1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070228509_sa2.resx">
+      <DependentUpon>202005070228509_sa2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070229255_sa3.resx">
+      <DependentUpon>202005070229255_sa3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070230518_sa4.resx">
+      <DependentUpon>202005070230518_sa4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070235148_sa5.resx">
+      <DependentUpon>202005070235148_sa5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070238227_sa6.resx">
+      <DependentUpon>202005070238227_sa6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070247335_sa7.resx">
+      <DependentUpon>202005070247335_sa7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005071616276_product.resx">
+      <DependentUpon>202005071616276_product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005100035559_m.resx">
+      <DependentUpon>202005100035559_m.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005152038000_show.resx">
+      <DependentUpon>202005152038000_show.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005152040545_show1.resx">
+      <DependentUpon>202005152040545_show1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005172050097_Description.resx">
+      <DependentUpon>202005172050097_Description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005181921575_shopping.resx">
+      <DependentUpon>202005181921575_shopping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005182025034_x.resx">
+      <DependentUpon>202005182025034_x.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005182038079_و.resx">
+      <DependentUpon>202005182038079_و.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005182043317_و1.resx">
+      <DependentUpon>202005182043317_و1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006011958089_quantity.resx">
+      <DependentUpon>202006011958089_quantity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021249053_bill.resx">
+      <DependentUpon>202006021249053_bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021430244_creation.resx">
+      <DependentUpon>202006021430244_creation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021448543_creation1.resx">
+      <DependentUpon>202006021448543_creation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021514518_creation2.resx">
+      <DependentUpon>202006021514518_creation2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021521334_creation3.resx">
+      <DependentUpon>202006021521334_creation3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021525335_creation4.resx">
+      <DependentUpon>202006021525335_creation4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021528327_creation5.resx">
+      <DependentUpon>202006021528327_creation5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021538141_creation6.resx">
+      <DependentUpon>202006021538141_creation6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021539433_creation7.resx">
+      <DependentUpon>202006021539433_creation7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031444446_ss.resx">
+      <DependentUpon>202006031444446_ss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031450559_ss1.resx">
+      <DependentUpon>202006031450559_ss1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031451193_ss2.resx">
+      <DependentUpon>202006031451193_ss2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031454245_billproduct.resx">
+      <DependentUpon>202006031454245_billproduct.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

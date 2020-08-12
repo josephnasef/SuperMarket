@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Super.SuperMarket.DAl.SQLServer.Model.Supplier>
+
+@{
+    ViewBag.Title = "Admin Supplier List";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+    <div>
+        <h3>Supplier List For Admin</h3>
+        <hr style="margin: 5px;" />
+        <a id="Create" href="@Url.Action("Create")" class="hidden tooltipp btn btn-primary">
+            <i class="fa fa-plus fa-6" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Creat New </span>
+        </a>
+    </div>
+
+<br />
+
+<div id="target" class="center margin-top-79  margin-left_-113">
+    <button id="btnn" class="btn btn-info " onclick="MyToggle()"> Show Table </button>
+</div>
+
+<table id="Visabile" cellspacing="0" style="width:76% !important" class="table table-hover table-bordered table-striped table-responsive btn-table border-radios Hidden-transition transiton border-collapse-separate margin-top_-14">
+    <thead class="text_color-f2f2f2 background-color-black">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppUser.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+
+
+            <th>Action </th>
+
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppUser.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Phone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rate)
+    </td>
+
+    <td class="nowrap padding-left-10 text-center">
+        <a href="@Url.Action("Edit", new { id = item.Id })" class="tooltipp btn btn-primary">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Edit </span>
+        </a>
+        <a href="@Url.Action("Details", new { id = item.Id })" class="tooltipp btn btn-primary">
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Details </span>
+        </a>
+        <a onclick="Delete(@item.Id)" href="@Url.Action("Delete", new { id = item.Id })" class="magin-right-10 tooltipp btn btn-primary" style="padding-left:10px">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Delete </span>
+        </a>
+    </td>
+</tr>
+    }
+
+</table>
+<style>
+
+    /*-- Rating --*/
+    .rating-avg {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 15px;
+    }
+
+        .rating-avg .rating-stars {
+            margin-left: 10px;
+        }
+
+        .rating-avg .rating-stars,
+        .rating .rating-stars {
+            display: inline-block;
+        }
+
+            .rating-avg .rating-stars > i,
+            .rating .rating-stars > i {
+                /*color: #E4E7ED;*/
+            }
+
+                .rating-avg .rating-stars > i.fa-star,
+                .rating .rating-stars > i.fa-star {
+                    /*color: #2eb82e;*/
+                }
+
+    .rating li {
+        margin: 5px 0px;
+    }
+
+    .rating .rating-progress {
+        position: relative;
+        display: inline-block;
+        height: 9px;
+        /*background-color: #E4E7ED;*/
+        width: 120px;
+        margin: 0px 10px;
+        border-radius: 5px;
+    }
+
+        .rating .rating-progress > div {
+            /*background-color: #2eb82e;*/
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 5px;
+        }
+
+    .rating .sum {
+        display: inline-block;
+        font-size: 12px;
+        /*color: #8D99AE;*/
+    }
+</style>

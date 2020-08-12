@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3ED4CEAA-BBE9-4741-BB99-52C32CE68F34}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Super.SuperMarket.Domain</RootNamespace>
+    <AssemblyName>Super.SuperMarket.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Concrete\Repository.cs" />
+    <Compile Include="Mangers\AppUserManger.cs" />
+    <Compile Include="Mangers\BanckAccountManger.cs" />
+    <Compile Include="Mangers\BillManger.cs" />
+    <Compile Include="Mangers\Cart .cs" />
+    <Compile Include="Mangers\CategoryManger.cs" />
+    <Compile Include="Mangers\OperationManger.cs" />
+    <Compile Include="Mangers\OperationTypeManger.cs" />
+    <Compile Include="Mangers\PaymentMethodManger.cs" />
+    <Compile Include="Mangers\ProductManger.cs" />
+    <Compile Include="Mangers\RoleManger.cs" />
+    <Compile Include="Mangers\ShippingDetailsManger.cs" />
+    <Compile Include="Mangers\SupplierManger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Super.SuperMarket.DAl.SQLServer\Super.SuperMarket.DAl.SQLServer.csproj">
+      <Project>{E9E8FD46-EB23-4C57-8DD3-73F0DB24D1FB}</Project>
+      <Name>Super.SuperMarket.DAl.SQLServer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EntityFramework">
+      <Version>6.2.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\Super.SuperMarket.Domain.csproj.CopyComplete" />
+    <None Include="obj\Debug\Super.SuperMarket.Domain.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\Super.SuperMarket.Domain.csprojAssemblyReference.cache" />
+    <None Include="obj\project.assets.json" />
+    <None Include="obj\project.nuget.cache" />
+    <None Include="obj\Super.SuperMarket.Domain.csproj.nuget.dgspec.json" />
+    <None Include="obj\Super.SuperMarket.Domain.csproj.nuget.g.props" />
+    <None Include="obj\Super.SuperMarket.Domain.csproj.nuget.g.targets" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="obj\Debug\Super.SuperMarket.Domain.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Super.SuperMarket.Domain.dll" />
+    <Content Include="obj\Debug\Super.SuperMarket.Domain.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,133 @@
+﻿@model Super.SuperMarket.InterFace.Models.InvoiceViewModel
+
+@{ Layout = null;}
+@{
+    //var time = DateTime.Now.Date.ToShortDateString();
+    string[] time = new string[4];
+    time[0] = DateTime.Now.Date.DayOfWeek.ToString();
+    time[1] = DateTime.Now.ToString("MMM");
+    time[2] = DateTime.Now.Day.ToString();
+    time[3] = DateTime.Now.Year.ToString();
+}
+<link href="~/Content/invoicee.css" rel="stylesheet" />
+<link href="~/Content/bootstrap4.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap4.min.js"></script>
+<link href="~/Content/padding-margin.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+
+<div id="invoice">
+
+    <div class="toolbar hidden-print">
+        <div class="text-right">
+            <button id="printInvoice" class="btn btn-info"><i class="fa fa-print"></i> Print</button>
+            @Html.ActionLink("Done" , "CachDone", "Cart", new { @class = "btn btn-info" })
+            @*<button class="btn btn-info"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>*@
+            @Html.ActionLink("back" , "Index", "Cart",new {@class = "btn btn-info" })
+        </div>
+        <hr>
+    </div>
+    <div class="invoice overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <img class="margin-top_-79" src="~/Images/supermarketlogo copy.PNG" data-holder-rendered="true" />
+                    </div>
+                    <div class="col company-details">
+                        <h2 class="name">
+                        </h2>
+                        <div>455 Foggy Heights, AZ 85004, US</div>
+                        <div>(123) 456-789</div>
+                        <div>company@example.com</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light">INVOICE TO:</div>
+                        <h2 class="to">John Doe</h2>
+                        <div class="address">796 Silver Harbour, TX 79273, US</div>
+                        <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+                    </div>
+                    <div class="col invoice-details">
+                        <h1 class="invoice-id">INVOICE 3-2-1</h1>
+                        <div class="date">Date of Invoice: @time[0] @time[2] - @time[1] - @time[3] </div>
+                        <div class="date">Due Date: 30/10/2018</div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-center">Product Name  </th>
+                            <th class="text-left">Quantity</th>
+                            <th class="text-center">Single Item PRICE</th>
+                            <th class="text-center">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @{
+                            int count = 0;
+                        }
+                        @foreach (var line in Model.Cart.lines)
+                        {
+                            <tr>
+                                <td class="no">@{count++;}@count</td>
+                                <td class="unit text-center"><span contenteditable><label>@line.Product.Name</label></span></td>
+                                <td class="text-left"><span contenteditable><label>@line.Quantity</label></span></td>
+                                <td class="qty text-center"><span data-prefix></span><span contenteditable><label>@line.Product.SellingPrice.ToString("c")</label></span></td>
+                                <td class="total text-center"><span contenteditable><label> @((line.Quantity * line.Product.SellingPrice).ToString("c"))</label></span></td>
+
+                            </tr>
+
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">SUBTOTAL</td>
+                            <td>
+                                @Model.Cart.ComputeTotalValue().ToString("c")
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">TAX @*25%*@</td>
+                            <td>@*$1,300.00*@</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">GRAND TOTAL</td>
+                            <td>
+                                @Model.Cart.ComputeTotalValue().ToString("c")
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="thanks">Thank you!</div>
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>
+            </main>
+            <footer>
+                Invoice was created on a computer and is invalid without the signature and seal.
+            </footer>
+        </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
+    </div>
+</div>
+
+<script>
+    $("#printInvoice").click(function () {
+        Popup($(".invoice")[0].outerHTML);
+        function Popup(data) {
+            window.print();
+            return true;
+        }
+    });
+</script>

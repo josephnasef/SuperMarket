@@ -1,0 +1,55 @@
+﻿@model Super.SuperMarket.InterFace.Models.InvoiceViewModel
+
+@{
+    //Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <div class="form-group">
+        @Html.LabelFor(model => model.operationType.Id, "operation type", htmlAttributes: new { @class = "control-label col-md-3" })
+        @Html.DropDownListFor(model => model.operationType.Id, ViewBag.operationType as SelectList, "-- Select operation Type -- ", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.operationType.Id, "", new { @class = "text-danger col-lg-offset-3" })
+    </div>
+    <h2>Cach Payment</h2>
+    <div id="invoice">
+        <table id="cartTable" class="table">
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Item</th>
+                    <th class="text-right">Price</th>
+                    <th class="text-right">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tbody>
+                @foreach (var line in Model.Cart.lines)
+                {
+                    <tr>
+                        <td class="text-center">@line.Quantity</td>
+                        <td class="text-left">@line.Product.Name</td>
+                        <td class="text-right">@line.Product.SellingPrice.ToString("c")</td>
+                        <td class="text-right">@((line.Quantity * line.Product.SellingPrice).ToString("c"))</td>
+
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="text-right">Total:</td>
+                    <td class="text-right">
+                        @Model.Cart.ComputeTotalValue().ToString("c")
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Confirm  order" />
+    </div>
+
+}
+

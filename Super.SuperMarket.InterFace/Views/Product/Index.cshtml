@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Super.SuperMarket.DAl.SQLServer.Model.Product>
+
+@{
+    ViewBag.Title = "Admin Product List";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+@{
+    //var time = DateTime.Now.Date.ToShortDateString();
+    string[] ProductionDate = new string[4];
+    string[] ExpiryDate = new string[4];
+}
+
+<div>
+    <h3>Producr List For Admin</h3>
+    <hr style="margin: 5px;" />
+    <a id="Create" href="@Url.Action("Create")" class="hidden tooltipp btn btn-primary">
+        <i class="fa fa-plus fa-6" aria-hidden="true"></i>
+        <span class="tooltiptexts"> Creat New </span>
+    </a>
+</div>
+
+<div id="target" class="center margin-top-79  margin-left_-113">
+    <button id="btnn" class="btn btn-info " onclick="MyToggle()"> Show Table </button>
+</div>
+
+<br />
+
+<table id="Visabile" cellspacing="0" style="width:76% !important" class="table table-hover table-bordered table-striped table-responsive btn-table border-radios Hidden-transition transiton border-collapse-separate margin-top_-14">
+    <thead class="text_color-f2f2f2 background-color-black">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </th>
+           
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.BarcodeNumber)
+            </th>
+            
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.SellingPrice)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.MadeInCountry)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ProductionDate)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ExpiryDate)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.HasGuarantee)
+            </th>
+            <th class="text-center">Action </th>
+        </tr>
+    </thead>
+
+
+    @foreach (var item in Model)
+    {
+        DateTime timecreation = (DateTime)item.ProductionDate;
+
+        ProductionDate[0] = timecreation.Date.DayOfWeek.ToString();
+        ProductionDate[1] = timecreation.ToString("MMM");
+        ProductionDate[2] = timecreation.Day.ToString();
+        ProductionDate[3] = timecreation.Year.ToString();
+
+        DateTime timeExpiry = (DateTime)item.ExpiryDate;
+        ExpiryDate[0] = timeExpiry.Date.DayOfWeek.ToString();
+        ExpiryDate[1] = timeExpiry.ToString("MMM");
+        ExpiryDate[2] = timeExpiry.Day.ToString();
+        ExpiryDate[3] = timeExpiry.Year.ToString();
+
+
+<tr class="text-center">
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.BarcodeNumber)
+    </td>
+
+
+    <td>
+        @Html.DisplayFor(modelItem => item.SellingPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MadeInCountry)
+    </td>
+    <td class="nowrap">
+        @ProductionDate[0] @ProductionDate[2] - @ProductionDate[1] - @ProductionDate[3]
+    </td>
+    <td class="nowrap">
+        @ExpiryDate[0] @ExpiryDate[2] - @ExpiryDate[1] - @ExpiryDate[3]
+    </td>
+    <td>
+        @{var grantee = item.HasGuarantee == true ? "it has  Guarantee" : "it has't  Guarantee";}
+
+        @grantee
+    </td>
+    <td class="nowrap padding-left-10 text-center">
+        <a href="@Url.Action("Edit", new { id = item.Id })" class="tooltipp btn btn-primary">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Edit </span>
+        </a>
+        <a href="@Url.Action("Details", new { id = item.Id })" class="tooltipp btn btn-primary">
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Details </span>
+        </a>
+        <a onclick="Delete(@item.Id)" href="@Url.Action("Delete", new { id = item.Id })" class="magin-right-10 tooltipp btn btn-primary" style="padding-left:10px">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <span class="tooltiptexts"> Delete </span>
+        </a>
+    </td>
+</tr>
+    }
+
+</table>
+
+
+@*@Scripts.Render("~/bundles/TooltipFun.js")*@

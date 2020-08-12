@@ -1,0 +1,22 @@
+﻿@model IEnumerable<string>
+
+<h3 class="text-info" style="background-color:antiquewhite; padding-left:5px; margin-top: 1px;">
+    Categories
+</h3>
+<ul class="list-unstyled components">
+    <li style="margin-bottom: 13px;">
+        @Html.ActionLink("Home", "List", "Product", null, new { @class = "btn btn-block btn-default btn-lg" })
+    </li>
+
+    @foreach (var item in Model)
+    {
+        <li style="margin-bottom: 13px;">
+            @Html.RouteLink(item, new { controller = "Product", action = "List", CategoryName = item },
+            new { @class = "btn btn-block btn-default btn-lg" + (item == ViewBag.SelectedCategory ? " btn-primary" : "") })
+        </li>
+    }
+</ul>
+<style>
+
+
+</style>

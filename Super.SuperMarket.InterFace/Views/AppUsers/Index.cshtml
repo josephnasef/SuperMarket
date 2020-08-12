@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Super.SuperMarket.DAl.SQLServer.Model.AppUser>
+
+@{
+    ViewBag.Title = "Admin App Users List";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div>
+    <h3>App Users List For Admin</h3>
+    <hr class="margin-all-5"/>
+    <a id="Create" href="@Url.Action("Create")" class="hidden tooltipp btn btn-primary">
+        <i class="fa fa-plus fa-6" aria-hidden="true"></i>
+        <span class="tooltiptexts"> Creat New </span>
+    </a>
+</div>
+
+<div id="target" class="center margin-top-79  margin-left_-113">
+    <button id="btnn" class="btn btn-info " onclick="MyToggle()"> Show Table </button>
+</div>
+
+<br />
+
+<table id="Visabile" cellspacing="0" style="width:76% !important" class="table table-hover table-bordered table-striped table-responsive btn-table border-radios Hidden-transition transiton border-collapse-separate margin-top_-14">
+    <thead class="text_color-f2f2f2 background-color-black">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Role.Name)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.BirthDay)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.PhotoUrl)
+            </th>
+            <th class="text-center">
+                Action
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr class="text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhotoUrl)
+            </td>
+            <td class="nowrap padding-left-10 text-center">
+                <a href="@Url.Action("Edit", new { id = item.Id })" class="tooltipp btn btn-primary">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <span class="tooltiptexts"> Edit </span>
+                </a>
+                <a href="@Url.Action("Details", new { id = item.Id })" class="tooltipp btn btn-primary">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span class="tooltiptexts"> Details </span>
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.Id })" class="magin-right-10 tooltipp btn btn-primary" style="padding-left:10px">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <span class="tooltiptexts"> Delete </span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

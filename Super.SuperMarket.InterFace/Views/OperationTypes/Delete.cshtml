@@ -1,0 +1,91 @@
+﻿@model Super.SuperMarket.DAl.SQLServer.Model.OperationType
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<<div>
+    <hr />
+    <table cellspacing="0" class="table table-hover  border-radios table-bordered table-responsive btn-table border-radios  transiton table-style-del-det" align="center">
+        <thead class="text_color-f2f2f2 background-color-black">
+            <tr class="text-center">
+                <td>Feild</td>
+                <td>Value</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Name)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Name)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.CreatedBy)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.UpdatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UpdatedDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.UpdatedBy)
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row margin-left-125">
+        <div class="col-md-offset-4 col-md-1">
+            <input type="submit" value="Delete" class="btn btn-success" />
+        </div>
+
+        <div class="col-md-1">
+            <div class="btn btn-danger text-color-white">
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "text-color-white" })
+            </div>
+        </div>
+    </div>
+}
+</div>
